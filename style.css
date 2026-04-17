@@ -1128,3 +1128,43 @@ textarea {
     padding: 15px 15px;
   }
 }
+
+.nav-social {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 42px;
+  height: 42px;
+  border-radius: 12px;
+
+  background: rgba(255, 255, 255, 0.7);
+  border: 1px solid rgba(16, 22, 19, 0.06);
+
+  box-shadow:
+    0 6px 16px rgba(20, 31, 24, 0.05),
+    inset 0 1px 0 rgba(255, 255, 255, 0.6);
+
+  transition:
+    transform var(--ease),
+    box-shadow var(--ease),
+    background var(--ease);
+}
+
+.nav-social svg {
+  width: 18px;
+  height: 18px;
+  fill: var(--text);
+  transition: fill var(--ease);
+}
+
+.nav-social:hover {
+  transform: translateY(-2px);
+  background: rgba(255, 255, 255, 0.9);
+  box-shadow:
+    0 12px 24px rgba(20, 31, 24, 0.08),
+    inset 0 1px 0 rgba(255, 255, 255, 0.7);
+}
+
+.nav-social:hover svg {
+  fill: var(--accent-deep);
+}
