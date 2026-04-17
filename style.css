@@ -24,8 +24,8 @@
   --shadow-xs: 0 6px 18px rgba(20, 31, 24, 0.04);
   --shadow-soft: 0 16px 38px rgba(20, 31, 24, 0.06);
   --shadow: 0 24px 64px rgba(20, 31, 24, 0.08);
-  --shadow-hover: 0 28px 72px rgba(20, 31, 24, 0.12);
-  --shadow-glow: 0 18px 45px rgba(94, 167, 84, 0.22);
+  --shadow-hover: 0 30px 74px rgba(20, 31, 24, 0.12);
+  --shadow-glow: 0 20px 48px rgba(94, 167, 84, 0.22);
 
   --radius-2xl: 34px;
   --radius-xl: 28px;
@@ -348,29 +348,42 @@ button {
 
 .hero-main {
   position: relative;
-  min-height: clamp(450px, 72vh, 540px);
+  min-height: clamp(460px, 72vh, 560px);
   border-radius: 36px;
   overflow: hidden;
   box-shadow: var(--shadow);
   background:
+    linear-gradient(
+      to right,
+      rgba(255, 255, 255, 0.96) 0%,
+      rgba(255, 255, 255, 0.88) 40%,
+      rgba(255, 255, 255, 0.5) 65%,
+      rgba(255, 255, 255, 0.12) 82%,
+      rgba(255, 255, 255, 0) 100%
+    ),
     url("images/hero-main.png") center/cover no-repeat;
   display: flex;
   align-items: flex-start;
   isolation: isolate;
+  transition:
+    transform var(--ease),
+    box-shadow var(--ease);
+}
+
+.hero-main:hover {
+  transform: scale(1.01);
+  box-shadow: var(--shadow-hover);
 }
 
 .hero-main::before {
   content: "";
   position: absolute;
-  inset: 0;
-  background:
-    radial-gradient(circle at 18% 22%, rgba(129, 200, 111, 0.14), transparent 24%),
-    linear-gradient(
-      135deg,
-      rgba(255, 255, 255, 0.88) 0%,
-      rgba(255, 255, 255, 0.74) 48%,
-      rgba(255, 255, 255, 0.58) 100%
-    );
+  width: 420px;
+  height: 420px;
+  right: 8%;
+  top: 18%;
+  background: radial-gradient(circle, rgba(129, 200, 111, 0.25), transparent 70%);
+  filter: blur(70px);
   z-index: 0;
 }
 
@@ -378,11 +391,14 @@ button {
   content: "";
   position: absolute;
   inset: 0;
-  background: linear-gradient(
-    180deg,
-    rgba(255, 255, 255, 0.08) 0%,
-    rgba(255, 255, 255, 0.16) 100%
-  );
+  background:
+    linear-gradient(
+      180deg,
+      rgba(255, 255, 255, 0.05) 0%,
+      rgba(255, 255, 255, 0.1) 100%
+    );
+  backdrop-filter: blur(3px);
+  -webkit-backdrop-filter: blur(3px);
   pointer-events: none;
   z-index: 0;
 }
@@ -391,8 +407,8 @@ button {
   position: relative;
   z-index: 2;
   width: 100%;
-  max-width: 500px;
-  padding: clamp(30px, 4vw, 48px) clamp(24px, 3vw, 38px);
+  max-width: 510px;
+  padding: clamp(32px, 4vw, 50px) clamp(24px, 3vw, 40px);
 }
 
 .hero-card {
@@ -401,8 +417,8 @@ button {
   gap: 10px;
   padding: 10px 15px;
   border-radius: 999px;
-  background: rgba(255, 255, 255, 0.8);
-  border: 1px solid rgba(255, 255, 255, 0.7);
+  background: rgba(255, 255, 255, 0.82);
+  border: 1px solid rgba(255, 255, 255, 0.74);
   box-shadow:
     0 10px 25px rgba(20, 31, 24, 0.05),
     inset 0 1px 0 rgba(255, 255, 255, 0.85);
@@ -415,9 +431,9 @@ button {
 }
 
 .hero h1 {
-  font-size: clamp(2.2rem, 4.7vw, 4rem);
-  line-height: 0.92;
-  letter-spacing: -0.07em;
+  font-size: clamp(2.25rem, 4.8vw, 4.15rem);
+  line-height: 0.9;
+  letter-spacing: -0.075em;
   max-width: 500px;
   margin-bottom: 16px;
 }
@@ -428,9 +444,9 @@ button {
 }
 
 .hero-sub {
-  max-width: 460px;
+  max-width: 470px;
   font-size: 1rem;
-  line-height: 1.62;
+  line-height: 1.65;
   color: var(--text-soft);
   margin-bottom: 22px;
 }
@@ -528,7 +544,7 @@ button {
 .hero-side {
   display: grid;
   grid-template-rows: auto 1fr;
-  gap: 16px;
+  gap: 18px;
   height: 100%;
 }
 
@@ -603,7 +619,15 @@ button {
 }
 
 .stat-card {
-  padding: 18px 18px 20px;
+  padding: 22px 22px 24px;
+  background: rgba(255, 255, 255, 0.9);
+  border: 1px solid rgba(255, 255, 255, 0.76);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  box-shadow:
+    0 20px 46px rgba(20, 31, 24, 0.08),
+    0 6px 18px rgba(20, 31, 24, 0.05),
+    inset 0 1px 0 rgba(255, 255, 255, 0.8);
 }
 
 .stat-card small {
@@ -617,10 +641,10 @@ button {
 }
 
 .stat-card h3 {
-  font-size: clamp(1.7rem, 2.7vw, 2.35rem);
-  line-height: 0.95;
-  letter-spacing: -0.05em;
-  margin-bottom: 8px;
+  font-size: clamp(1.9rem, 2.8vw, 2.5rem);
+  line-height: 0.96;
+  letter-spacing: -0.06em;
+  margin-bottom: 10px;
 }
 
 .stat-card h3 span {
@@ -629,20 +653,28 @@ button {
 
 .stat-card p {
   color: var(--text-soft);
-  font-size: 0.92rem;
-  max-width: 340px;
+  font-size: 0.95rem;
+  line-height: 1.55;
+  max-width: 320px;
 }
 
 .mini-grid-card {
-  padding: 8px;
+  padding: 10px;
   display: flex;
   flex-direction: column;
   height: 100%;
-  background: rgba(255, 255, 255, 0.76);
+  background: rgba(255, 255, 255, 0.82);
+  border: 1px solid rgba(255, 255, 255, 0.74);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  box-shadow:
+    0 20px 46px rgba(20, 31, 24, 0.08),
+    0 6px 18px rgba(20, 31, 24, 0.05),
+    inset 0 1px 0 rgba(255, 255, 255, 0.7);
 }
 
 .mini-grid-media {
-  border-radius: 20px;
+  border-radius: 22px;
   overflow: hidden;
   background: #f3f7f2;
   display: flex;
@@ -650,17 +682,17 @@ button {
   min-height: 100%;
   box-shadow:
     inset 0 1px 0 rgba(255, 255, 255, 0.68),
-    0 8px 24px rgba(20, 31, 24, 0.05);
+    0 10px 26px rgba(20, 31, 24, 0.05);
 }
 
 .mini-grid-card img {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  border-radius: 20px;
+  border-radius: 22px;
   transform: scale(1);
   transition:
-    transform 0.8s ease,
+    transform 0.9s ease,
     filter var(--ease);
   will-change: transform;
 }
@@ -915,7 +947,7 @@ textarea {
   }
 
   .hero-main {
-    min-height: 470px;
+    min-height: 480px;
   }
 
   .hero-content {
@@ -959,6 +991,15 @@ textarea {
 
   .hero-main {
     min-height: auto;
+    background-position: center right;
+  }
+
+  .hero-main::before {
+    width: 280px;
+    height: 280px;
+    right: 2%;
+    top: 10%;
+    filter: blur(55px);
   }
 
   .hero-content {
