@@ -110,3 +110,63 @@ window.addEventListener("hashchange", () => {
     document.body.classList.remove("menu-open");
   }
 });
+
+/* =========================
+   SMOOTH SCROLL (premium feel)
+========================= */
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+  anchor.addEventListener("click", function (e) {
+    const target = document.querySelector(this.getAttribute("href"));
+    if (!target) return;
+
+    e.preventDefault();
+
+    target.scrollIntoView({
+      behavior: "smooth",
+      block: "start"
+    });
+  });
+});
+
+
+/* =========================
+   CTA BOOST (subtle animation)
+========================= */
+const ctaButtons = document.querySelectorAll(".btn-primary");
+
+ctaButtons.forEach(btn => {
+  btn.addEventListener("mouseenter", () => {
+    btn.style.transform = "translateY(-3px) scale(1.02)";
+  });
+
+  btn.addEventListener("mouseleave", () => {
+    btn.style.transform = "";
+  });
+});
+
+
+/* =========================
+   SIMPLE FORM FEEDBACK
+========================= */
+const form = document.querySelector("form");
+
+if (form) {
+  form.addEventListener("submit", () => {
+    const button = form.querySelector("button");
+
+    if (button) {
+      button.innerText = "Sending...";
+      button.disabled = true;
+    }
+  });
+}
+
+
+/* =========================
+   AUTO CLOSE MENU AFTER CLICK (extra safety)
+========================= */
+document.querySelectorAll(".mobile-menu a").forEach(link => {
+  link.addEventListener("click", () => {
+    document.body.classList.remove("menu-open");
+  });
+});
